@@ -15,16 +15,14 @@ Livewire component for searchable select inputs
 You can install the package via composer:
 
 ```bash
-composer require mitrate/livewire-select
+composer require mitratek/livewire-select
 ```
 
 ## Basic Usage
 
 - Use the ```livewire-select``` component in your blade view, and pass in a parameters:
 ```html
-...
 
 <livewire:select-input :model="'\App\Models\Country'" :dataId="'country_id'" :placeholder="'Select country'" :wire:key="'select_country'" />
 
-...
 ```
