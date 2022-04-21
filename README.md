@@ -1,6 +1,6 @@
 # Livewire Select
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/mitratek/livewire-select.svg?style=flat-square)](https://packagist.org/packages/mediconesystems/livewire-datatables)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/mitratek/livewire-select.svg?style=flat-square)](https://packagist.org/packages/mitratek/livewire-select)
 
 Livewire component for searchable select inputs
 
