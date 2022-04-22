@@ -29,6 +29,7 @@ composer require mitratek/livewire-select
 
 namespace App\Http\Livewire\CreateUser
 
+use Livewire\Component;
 use Mitratek\LivewireSelect\LivewireSelect;
 
 class CreateUser extends Component
