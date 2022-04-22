@@ -23,16 +23,18 @@ composer require mitratek/livewire-select
 
 ## Basic Usage
 
-- Extend class ```LivewireSelectComponent``` in your livewire component:
+- use trait ```LivewireSelect``` in your livewire component:
 ```php
 <?php
 
 namespace App\Http\Livewire\CreateUser
 
-use Mitratek\LivewireSelect\LivewireSelectComponent;
+use Mitratek\LivewireSelect\LivewireSelect;
 
-class CreateUser extends LivewireSelectComponent
+class CreateUser extends Component
 {
+    use LivewireSelect;
+
     // set properties to get selected value from LivewireSelect
     public $country_id;
 }
@@ -42,7 +44,7 @@ class CreateUser extends LivewireSelectComponent
 - Use the ```livewire-select``` component in your blade view, and pass in a parameters:
 ```html
 
-<livewire:select-input name='country_id' model='\App\Models\Country' search='["name", "region"]' show='{id} - {name}' placeholder='Pilih negara' />
+<livewire:select-input name='country_id' model='\App\Models\Country' search='["name", "region"]' show='{id} - {name}' placeholder='Choose country' />
 
 ```
 
@@ -55,4 +57,4 @@ class CreateUser extends LivewireSelectComponent
 |**show**|*String - required* show column| Define the column in model that want to be show in select option                                                                                  | ```show='{id} - {name}'```|
 |**placeholder**|*String - optional* placeholder name| Define the placeholder for select input                                                                                   | ```placeholder='Select Country'```|
 |**min**|*String - optional* minimum character| Define minimum character                                                                                   | ```min='5'```|
-|**parent**|*String - optional* parent of select| Define parent of current select box, this option will make current select depend with the other                                                                                   | ```parent='country_id'```|
+|**parent**|*String - optional* parent of select| Define parent of current select box, this option will make current select depend with the other                                                                                   | ```parent='planet_id'```|
