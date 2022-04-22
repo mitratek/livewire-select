@@ -1,6 +1,9 @@
 # Livewire Select
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/mitratek/livewire-select.svg?style=flat-square)](https://packagist.org/packages/mitratek/livewire-select)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/mitratek/livewire-select.svg?style=for-the-badge)](https://packagist.org/packages/mitratek/livewire-select)
+[![Total Downloads](https://img.shields.io/packagist/dt/mitratek/livewire-select.svg?style=for-the-badge)](https://packagist.org/packages/mitratek/livewire-select)
+[![GitHub license](https://img.shields.io/github/license/mitratek/livewire-select?style=for-the-badge)](https://github.com/mitratek/livewire-select/blob/master/LICENSE)
+
 
 Livewire component for searchable select inputs
 
@@ -39,14 +42,17 @@ class CreateUser extends LivewireSelectComponent
 - Use the ```livewire-select``` component in your blade view, and pass in a parameters:
 ```html
 
-<livewire:select-input :model="'\App\Models\Country'" :dataId="'country_id'" :placeholder="'Select country'" :wire:key="'select_country'" />
+<livewire:select-input name='country_id' model='\App\Models\Country' search='["name", "region"]' show='{id} - {name}' placeholder='Pilih negara' />
 
 ```
 
 ### Properties
 | Property | Arguments | Result | Example |
 |----|----|------------------------------------------------------------------------------------------------------------------------------------------------|----|
-|**model**|*String* full model name| Define the base model for the table                                                                                   | ```:model="'App\Models\Country'"```|
-|**dataId**|*String* property name| Define the property name                                                                                   | ```:dataId="'country_id'"```|
-|**placeholder**|*String* placeholder name| Define the placeholder for select input                                                                                   | ```:placeholder="'Select Country'"```|
-|**wire:key**|*String* unique id| Define unique id for select input (each select input within the page must have different unique id)                                                                                   | ```:wire:key="'select_country'"```|
+|**name**|*String - required* property name| Define the property name                                                                                   | ```name='country_id'```|
+|**model**|*String - required* full model name| Define the base model for the table                                                                                   | ```model='App\Models\Country'```|
+|**search**|*Array - required* search column| Define the column in model that want to be searched                                                                                  | ```search='["name", "region"]'```|
+|**show**|*String - required* show column| Define the column in model that want to be show in select option                                                                                  | ```show='{id} - {name}'```|
+|**placeholder**|*String - optional* placeholder name| Define the placeholder for select input                                                                                   | ```placeholder='Select Country'```|
+|**min**|*String - optional* minimum character| Define minimum character                                                                                   | ```min='5'```|
+|**parent**|*String - optional* parent of select| Define parent of current select box, this option will make current select depend with the other                                                                                   | ```parent='country_id'```|
