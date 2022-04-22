@@ -18,4 +18,9 @@ trait LivewireSelect
             $this->{$key} = $value;
         }
     }
+    
+    public function resetLivewireSelect()
+    {
+        $this->emit('resetLivewireSelect');
+    }
 }

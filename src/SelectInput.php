@@ -21,7 +21,10 @@ class SelectInput extends Component
     public $parentId;
     public $message = null;
 
-    protected $listeners = ['inputSelected' => 'setChildrenOption'];
+    protected $listeners = [
+        'inputSelected' => 'setChildrenOption',
+        'resetLivewireSelect' => 'resetValue'
+    ];
 
     public function mount($name, $model, $search, $show, $min=0, $placeholder=null, $parent=null)
     {
@@ -114,5 +117,10 @@ class SelectInput extends Component
         $this->isSelected = 1;
 
         $this->emit('inputSelected', [$this->name => $id]);
+    }
+
+    public function resetValue()
+    {
+        $this->queryData = '';
     }
 }
