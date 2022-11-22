@@ -16,11 +16,11 @@ trait LivewireSelect
         foreach($ids as $key => $value)
         {
             $this->{$key} = $value;
+
+            // call livewire class hook when specific property updated
+            $this->{'updated'.ucwords($key)}();
         }
-    }
-    
-    public function resetLivewireSelect()
-    {
-        $this->emit('resetLivewireSelect');
+
+        
     }
 }

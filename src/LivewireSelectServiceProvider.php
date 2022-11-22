@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 
 use Mitratek\LivewireSelect\SelectInput;
+use Mitratek\LivewireSelect\View\Components\ClearButton;
 use Mitratek\LivewireSelect\View\Components\LoadingIndicator;
 
 class LivewireSelectServiceProvider extends ServiceProvider
@@ -30,6 +31,7 @@ class LivewireSelectServiceProvider extends ServiceProvider
     protected function registerViewComponents()
     {
         Blade::component('loading-indicator', LoadingIndicator::class);
+        Blade::component('clear-button', ClearButton::class);
     }
 
     protected function registerLivewireComponents()
