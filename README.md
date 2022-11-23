@@ -49,11 +49,11 @@ class CreateUser extends Component
 
 ```
 
-or
+Or you can pass collection data into select-input like below:
 
 ```html
 
-<livewire:select-input name='country_id' data='{{ $countries }}' search='["name", "region"]' show='{id} - {name}' value='id' placeholder='Choose country' />
+<livewire:select-input name='country_id' collection='{!! $countries !!}' search='["name", "region"]' show='{id} - {name}' value='id' placeholder='Choose country' />
 
 ```
 
@@ -61,7 +61,7 @@ or
 | Property | Arguments | Result | Example |
 |----|----|------------------------------------------------------------------------------------------------------------------------------------------------|----|
 |**name**|*String - required* property name| Define the property name                                                                                   | ```name='country_id'```|
-|**model** or **data** |*String - required* full model name or *Collection - required* full collection| Define the source of data that will be select, you must choose one between **model** or **data**                                                                               | ```model='App\Models\Country'``` or ```data='{!! $countries !!}'```|
+|**model** or **collection** |*String - required* full model name or *Collection - required* full collection| Define the source of data that will be select, you must choose one between **model** or **collection**                                                                               | ```model='App\Models\Country'``` or ```collection='{!! $countries !!}'```|
 |**search**|*Array - required* search column| Define the column in model that want to be searched                                                                                  | ```search='["name", "region"]'```|
 |**show**|*String - required* show column| Define the column in model that want to be show in select option                                                                                  | ```show='{id} - {name}'```|
 |**value**|*String - required* set value| Define the column name as a value data that will be selected                                                                                  | ```value='id'```|

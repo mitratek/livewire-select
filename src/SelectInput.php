@@ -9,7 +9,7 @@ class SelectInput extends Component
 {
     public $name;
     public $model;
-    public $data;
+    public $collection;
     public $search;
     public $show;
     public $value;
@@ -26,11 +26,11 @@ class SelectInput extends Component
 
     protected $listeners = ['inputSelected' => 'setChildrenOption'];
 
-    public function mount($name, $search, $show, $value, $min=0, $model=null, $data=null, $placeholder=null, $parent=null)
+    public function mount($name, $search, $show, $value, $min=0, $model=null, $collection=null, $placeholder=null, $parent=null)
     {
         $this->name = $name;
         $this->model = $model;
-        $this->data = $data;
+        $this->collection = $collection;
         $this->search = json_decode($search);
         $this->show = $show;
         $this->value = $value;
@@ -74,6 +74,7 @@ class SelectInput extends Component
 
         $this->isSelected = 0;
 
+        // if user choose model as a data sources
         if($this->model != null)
         {
             $dataList = $this->model::query();
@@ -93,9 +94,10 @@ class SelectInput extends Component
             $this->dataList = $this->buildOptions($dataList->get());
         }
         
-        if($this->data != null)
+        // if user choose collection as a data sources
+        if($this->collection != null)
         {
-            $dataList = collect(json_decode($this->data));
+            $dataList = collect(json_decode($this->collection));
             
             // search for related column
             if(isset($this->queryData))
