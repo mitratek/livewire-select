@@ -45,7 +45,15 @@ class CreateUser extends Component
 - Use the ```livewire-select``` component in your blade view, and pass in a parameters:
 ```html
 
-<livewire:select-input name='country_id' model='\App\Models\Country' search='["name", "region"]' show='{id} - {name}' placeholder='Choose country' />
+<livewire:select-input name='country_id' model='\App\Models\Country' search='["name", "region"]' show='{id} - {name}' value='id' placeholder='Choose country' />
+
+```
+
+or
+
+```html
+
+<livewire:select-input name='country_id' data='{{ $countries }}' search='["name", "region"]' show='{id} - {name}' value='id' placeholder='Choose country' />
 
 ```
 
@@ -53,9 +61,10 @@ class CreateUser extends Component
 | Property | Arguments | Result | Example |
 |----|----|------------------------------------------------------------------------------------------------------------------------------------------------|----|
 |**name**|*String - required* property name| Define the property name                                                                                   | ```name='country_id'```|
-|**model**|*String - required* full model name| Define the base model for the table                                                                                   | ```model='App\Models\Country'```|
+|**model** or **data** |*String - required* full model name or *Collection - required* full collection| Define the source of data that will be select, you must choose one between **model** or **data**                                                                               | ```model='App\Models\Country'``` or ```data='{!! $countries !!}'```|
 |**search**|*Array - required* search column| Define the column in model that want to be searched                                                                                  | ```search='["name", "region"]'```|
 |**show**|*String - required* show column| Define the column in model that want to be show in select option                                                                                  | ```show='{id} - {name}'```|
+|**value**|*String - required* set value| Define the column name as a value data that will be selected                                                                                  | ```value='id'```|
 |**placeholder**|*String - optional* placeholder name| Define the placeholder for select input                                                                                   | ```placeholder='Select Country'```|
 |**min**|*String - optional* minimum character| Define minimum character                                                                                   | ```min='5'```|
 |**parent**|*String - optional* parent of select| Define parent of current select box, this option will make current select depend with the other                                                                                   | ```parent='planet_id'```|

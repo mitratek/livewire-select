@@ -1,7 +1,7 @@
 <div x-data="{ dropdownOpen: false }" class="relative">
     <input @click="dropdownOpen = ! dropdownOpen" @click.away="dropdownOpen = false" type="text" wire:model.debounce.1000ms="queryData" wire:click="getQueryData" wire:keydown.tab="getQueryData" class="w-full shadow appearance-none border rounded py-2 pl-3 pr-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="{{ $placeholder }}" autocomplete="mitracloud-off" />
 
-    <span wire:loading class="absolute inset-y-2 right-0 flex items-center pr-2">
+    <span wire:loading wire:target="queryData" class="absolute inset-y-2 right-0 flex items-center pr-2">
         <x-loading-indicator />
     </span>
 

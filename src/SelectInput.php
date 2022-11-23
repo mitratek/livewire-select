@@ -2,14 +2,17 @@
 
 namespace Mitratek\LivewireSelect;
 
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class SelectInput extends Component
 {
     public $name;
     public $model;
+    public $data;
     public $search;
     public $show;
+    public $value;
     public $min;
     public $placeholder;
 
@@ -23,12 +26,14 @@ class SelectInput extends Component
 
     protected $listeners = ['inputSelected' => 'setChildrenOption'];
 
-    public function mount($name, $model, $search, $show, $min=0, $placeholder=null, $parent=null)
+    public function mount($name, $search, $show, $value, $min=0, $model=null, $data=null, $placeholder=null, $parent=null)
     {
         $this->name = $name;
         $this->model = $model;
+        $this->data = $data;
         $this->search = json_decode($search);
         $this->show = $show;
+        $this->value = $value;
         $this->min = $min;
         $this->placeholder = $placeholder;
 
@@ -68,21 +73,42 @@ class SelectInput extends Component
         }
 
         $this->isSelected = 0;
-        $dataList = $this->model::query();
 
-        // search for related column
-        foreach($this->search as $column)
+        if($this->model != null)
         {
-            $dataList = $dataList->orWhere($column, 'like', '%' . $this->queryData . '%');
+            $dataList = $this->model::query();
+    
+            // search for related column
+            foreach($this->search as $column)
+            {
+                $dataList = $dataList->orWhere($column, 'like', '%' . $this->queryData . '%');
+            }
+            
+            // check if parent is exists
+            if(isset($this->parent))
+            {
+                $dataList = $dataList->where($this->parent, $this->parentId);
+            }
+            
+            $this->dataList = $this->buildOptions($dataList->get());
         }
         
-        // check if parent is exists
-        if(isset($this->parent))
+        if($this->data != null)
         {
-            $dataList = $dataList->where($this->parent, $this->parentId);
+            $dataList = collect(json_decode($this->data));
+            
+            // search for related column
+            if(isset($this->queryData))
+            {
+                $dataList = $dataList->filter(function ($data) {
+                    foreach($this->search as $column)
+                    {
+                        return str_contains(strtolower($data->{$column}), strtolower($this->queryData));
+                    }
+                });
+            }
+            $this->dataList = $this->buildOptions($dataList);
         }
-        
-        $this->dataList = $this->buildOptions($dataList->get());
     }
 
     protected function buildOptions($dataList)
@@ -92,7 +118,7 @@ class SelectInput extends Component
 
         // build id and value for select option
         $results = $dataList->map(function($value, $key) use($columns){
-            $data['id'] = $value->id;
+            $data['id'] = $value->{$this->value};
             
             $text = $this->show;
             foreach($columns[1] as $key => $column)
