@@ -21,7 +21,10 @@
     "autoload": {
         "psr-4": {
             "Mitratek\\LivewireSelect\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "extra": {
         "laravel": {
