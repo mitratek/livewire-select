@@ -1,1 +1,2 @@
-<!-- for future development -->
+<?php
+// for future development
